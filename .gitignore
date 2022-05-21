@@ -1,0 +1,6 @@
+venv
+output
+__pycache__
+toy_data
+file.txt
+.DS_Store
