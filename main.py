@@ -16,7 +16,7 @@ class SearchModel():
         self.preprocess = preprocess
 
     def getPreprocessImages(self, image_paths: list = [], video_frames = None):
-        if video_frames:
+        if video_frames is not None:
             return [self.preprocess(Image.fromarray(img)).unsqueeze(0).to(self.device) for img in video_frames]
         return [self.preprocess(Image.open(img)).unsqueeze(0).to(self.device) for img in image_paths]
 

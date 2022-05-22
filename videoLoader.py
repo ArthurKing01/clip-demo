@@ -2,13 +2,20 @@ import ffmpeg
 import numpy as np
 import os
 
+_ffmpeg_video_args = {}
+_ffmpeg_video_args.setdefault('format', 'rawvideo')
+_ffmpeg_video_args.setdefault('pix_fmt', 'rgb24')
+_ffmpeg_video_args.setdefault('frame_pts', True)
+_ffmpeg_video_args.setdefault('vsync', 0)
+_ffmpeg_video_args.setdefault('vf', f'fps={1}')
+
 def getVideoFrames(p: str):
-    ffmpeg_args = {
-        "vf": "fps=1"
-    }
+    ffmpeg_args = _ffmpeg_video_args
     try:
         video = ffmpeg.probe(p)['streams'][0]
         w, h = ffmpeg_args.get('s', f'{video["width"]}x{video["height"]}').split('x')
+        w = int(w)
+        h = int(h)
         out, _ = (
                     ffmpeg.input(p)
                     .output('pipe:', **ffmpeg_args)
