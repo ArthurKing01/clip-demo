@@ -114,12 +114,12 @@ img_names = []
 
 for i in range(120):
     print("sports/image-{:0>3d}".format(i+1))
-    img_names.append("sports/image1-{:0>3d}.jpg".format(i+1))
+    img_names.append("toy_data/sports/image1-{:0>3d}.jpg".format(i+1))
 
 images = searchModel.getPreprocessImages(img_names)
 
 
-video_name = "sports/sports.mp4"
+video_name = "toy_data/sports/sports.mp4"
 
 querys = ['a diagram', 'a sports bracelet', 'a man on the grassland', 'two people']
 
@@ -141,7 +141,7 @@ for name in part_names:
 # with open('file.txt', 'w') as f:
 #     f.write('\n'.join([f'file {name}' for name in part_names]))
 #     f.close()
-[waitForFileExist(name) for name in part_names]
+[waitForFileExist(name) for name in part_ts_names]
 mergeVideo(part_ts_names, "sports.mp4")
 
 
